@@ -1,0 +1,35 @@
+<h1>
+  <%=@question.name %>
+</h1>
+  <%#= form_for @question, method: :patch do |f| %>
+    <%#= f.submit "Edit Question" %>
+
+    <%=link_to "Edit Question",edit_question_path %>
+    <br>
+
+
+
+<body>
+
+<%=@question.description%>
+
+    <%if @answers%>
+      <%@answers.each do |a|%>
+      <li>
+        <%=a.message%>
+          <%= form_for [@question, a], method: :delete do |g| %>
+            <%= g.submit "Delete Answer" %>
+          <%end%>
+      </li>
+        <%#=a.user_id.username%>
+      <%end%>
+      <%end%>
+        <br>
+          <%=link_to "Answer thee question", new_question_answer_path(question_id: params[:id])%>
+        </br>
+
+    <%= form_for @question, method: :delete do |f| %>
+      <%= f.submit "Delete Question" %>
+    <%end%>
+
+</body>

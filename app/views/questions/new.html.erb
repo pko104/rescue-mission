@@ -1,0 +1,31 @@
+<h1><%= "What you want?" %></h1>
+
+<% if flash.any? %>
+  <div class="flash">
+    <div class="container">
+      <% flash[:notice].each do |f| %>
+        <li>
+          <%=f%>
+        </li>
+      <%end%>
+    </div>
+  </div>
+<% end %>
+
+<br>
+  <%= form_for @questions do |f| %>
+    <div>
+      <%= f. label "ASK YO QUEESTION", as: :name %>
+      <br>
+        <%= f. text_area :name, size: "40x5" %>
+    </div>
+    <div>
+      <%= f. label :description %>
+      <br>
+        <%= f. text_area :description, size: "40x10" %>
+    </div>
+    <div>
+      <%= f.submit  "Submit"%>
+    <div>
+  <%end%>
+</br>

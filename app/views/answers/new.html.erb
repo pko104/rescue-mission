@@ -1,0 +1,16 @@
+<br>
+  <%= form_for [@question, @answers] do |z| %>
+    <div>
+      <%= z.label "WHATS YO ANSWER", as: :message %>
+      <br>
+      <%= z.text_area :message, :size=> "20x10"%>
+    </div>
+<%#    <div>
+      <%= "Posting as: "%>
+  <%#      <%= z.label :user_id.username %>
+ <%#   </div> #%>
+    <div>
+      <%= z.submit  "Submit"%>
+    <div>
+  <%end%>
+</br>

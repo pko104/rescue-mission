@@ -1,0 +1,36 @@
+<h1>Hello, questions!</h1>
+
+<% if flash.any? %>
+  <div class="flash">
+    <div class="container">
+      <li>
+        <%= flash[:notice]%>
+      </li>
+        <br>
+    </div>
+  </div>
+<%end%>
+
+<div>
+  <%= link_to "SUBMIT YOURS NEEOOWW", new_question_path%>
+  <br>
+  </br>
+</div>
+<%if @questions%>
+  <% @questions.each do |q| %>
+    <div class = "field">
+      <%= "Question: " %>
+        <%= link_to q.name, question_path(q) %>
+    </div>
+    <div>
+      <li>
+        <%= "Description: " %>
+          <%= q.description %>
+      </li>
+    </div>
+      <%= form_for q, method: :delete do |f| %>
+        <%= f.submit "Delete Question" %>
+      <%end%>
+    </br>
+  <%end%>
+<%end%>
