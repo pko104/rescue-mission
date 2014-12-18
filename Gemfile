@@ -33,6 +33,12 @@ gem 'pry-rails'
 gem 'therubyracer'
 gem 'devise'
 gem 'omniauth'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
+end
 # Use unicorn as the app server
 # gem 'unicorn'
 

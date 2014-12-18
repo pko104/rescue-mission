@@ -3,11 +3,9 @@
 <% if flash.any? %>
   <div class="flash">
     <div class="container">
-      <% flash[:notice].each do |f| %>
-        <li>
-          <%=f%>
-        </li>
-      <%end%>
+      <li>
+        <%= flash[:notice]%>
+      </li>
     </div>
   </div>
 <% end %>
@@ -15,7 +13,7 @@
 <br>
   <%= form_for @questions do |f| %>
     <div>
-      <%= f. label "ASK YO QUEESTION", as: :name %>
+      <%= f. label :name, as: :name %>
       <br>
         <%= f. text_area :name, size: "40x5" %>
     </div>
