@@ -1,5 +1,7 @@
 <h1>Hello, questions!</h1>
-
+<li>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+</li>
 <% if flash.any? %>
   <div class="flash">
     <div class="container">
@@ -12,7 +14,8 @@
 <%end%>
 
 <div>
-  <%= link_to "SUBMIT YOURS NEEOOWW", new_question_path%>
+  <br>
+    <%= link_to "SUBMIT YOURS NEEOOWW", new_question_path%>
   <br>
   </br>
 </div>
@@ -23,13 +26,20 @@
         <%= link_to q.name, question_path(q) %>
     </div>
     <div>
+      <%= "Description: " %>
       <li>
-        <%= "Description: " %>
-          <%= q.description %>
+        <%= q.description %>
+      </li>
+      <%= "Submitted By: " %>
+      <li>
+        <%= q.user.email %>
       </li>
     </div>
-      <%= form_for q, method: :delete do |f| %>
-        <%= f.submit "Delete Question" %>
+    <br>
+      <%if current_user.id == q.user.id%>
+        <%= form_for q, method: :delete do |f| %>
+          <%= f.submit "Delete Question" %>
+        <%end%>
       <%end%>
     </br>
   <%end%>

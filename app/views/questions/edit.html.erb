@@ -1,5 +1,5 @@
 <br>
-  <%= form_for @question, method: :update do |f| %>
+  <%= form_for @question, method: :patch do |f| %>
     <div>
       <%= f.label "EDIT YO QUEESTION", as: :name %>
       <br>
@@ -15,3 +15,5 @@
     <div>
   <%end%>
 </br>
+
+<%=link_to "Go Back", question_path(id: @question.id)%>

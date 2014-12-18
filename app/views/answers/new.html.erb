@@ -1,16 +1,28 @@
-<br>
+<% if flash.any? %>
+  <div class="flash">
+    <div class="container">
+      <li>
+        <%= flash[:notice]%>
+      </li>
+    </div>
+  </div>
+<% end %>
+
+<div>&nbsp;</div>
   <%= form_for [@question, @answers] do |z| %>
     <div>
       <%= z.label "WHATS YO ANSWER", as: :message %>
-      <br>
+      <div>&nbsp;</div>
       <%= z.text_area :message, :size=> "20x10"%>
     </div>
-<%#    <div>
+     <div>
       <%= "Posting as: "%>
-  <%#      <%= z.label :user_id.username %>
- <%#   </div> #%>
+      <%=current_user.email%>
+    </div>
     <div>
       <%= z.submit  "Submit"%>
     <div>
   <%end%>
 </br>
+
+<%=link_to "Go Back", question_path(id: @question.id)%>

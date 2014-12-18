@@ -1,2 +1,8 @@
 <h1>Hello, Rails!</h1>
-<%= link_to "Questions", questions_path %>
+  <%="Welcome! "%><%=current_user.email%>
+<li>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+</li>
+<br>
+  <%= link_to "Questions", questions_path %>
+</br>

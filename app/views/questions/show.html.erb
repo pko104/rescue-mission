@@ -1,35 +1,54 @@
+<% if flash.any? %>
+  <div class="flash">
+    <div class="container">
+      <li>
+        <%= flash[:notice]%>
+      </li>
+    </div>
+  </div>
+<% end %>
+
 <h1>
   <%=@question.name %>
 </h1>
-  <%#= form_for @question, method: :patch do |f| %>
-    <%#= f.submit "Edit Question" %>
-
-    <%=link_to "Edit Question",edit_question_path %>
-    <br>
-
-
-
+<h2><%="Submitted by: " %>
+<%=@question.user.email%>
+</h2>
+<%if current_user.id == @question.user_id%>
+  <div><%=link_to "Edit Question",edit_question_path %><div>
+<%end%>
+  <%=link_to "Answer thee question", new_question_answer_path(question_id: params[:id])%>
+<div>&nbsp;</div>
 <body>
 
 <%=@question.description%>
 
     <%if @answers%>
       <%@answers.each do |a|%>
-      <li>
-        <%=a.message%>
-          <%= form_for [@question, a], method: :delete do |g| %>
-            <%= g.submit "Delete Answer" %>
-          <%end%>
-      </li>
-        <%#=a.user_id.username%>
+      <div>&nbsp;</div>
+      <li><%="Answer: "%><%=a.message%></li>
+      <div>&nbsp;</div>
+      <div><%=a.user.email%><%="  Vote: " + "#{a.vote}"%></div>
+      <div>&nbsp;</div>
+        <%if current_user.id == a.user_id%>
+            <%= form_for [@question, a], method: :delete do |g| %>
+              <%= g.submit "Delete Answer" %>
+            <%end%>
+        <%end%>
+        <%if current_user.id != a.user_id%>
+            <%= form_for [@question, a], :url => vote_question_answers_path(@question, a) do |g| %>
+              <%= g.submit "Vote for Best Answer" %>
+            <%end%>
+        <%end%>
       <%end%>
-      <%end%>
-        <br>
-          <%=link_to "Answer thee question", new_question_answer_path(question_id: params[:id])%>
-        </br>
-
-    <%= form_for @question, method: :delete do |f| %>
-      <%= f.submit "Delete Question" %>
     <%end%>
 
+  <div>&nbsp;</div>
+    <%=link_to "Go Back", questions_path%>
+  <div>&nbsp;</div>
+    <%if current_user.id == @question.user_id%>
+      <%= form_for @question, method: :delete do |f| %>
+        <%= f.submit "Delete Question" %>
+      <%end%>
+    <%end%>
 </body>
