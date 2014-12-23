@@ -1,7 +1,7 @@
 <br>
   <%= form_for @question, method: :patch do |f| %>
     <div>
-      <%= f.label "EDIT YO QUEESTION", as: :name %>
+      <%= f.label :name%>
       <br>
         <%= f.text_area :name, size: "40x5" %>
     </div>

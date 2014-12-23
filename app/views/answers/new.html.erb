@@ -11,7 +11,7 @@
 <div>&nbsp;</div>
   <%= form_for [@question, @answers] do |z| %>
     <div>
-      <%= z.label "WHATS YO ANSWER", as: :message %>
+      <%= z.label :message%>
       <div>&nbsp;</div>
       <%= z.text_area :message, :size=> "20x10"%>
     </div>
